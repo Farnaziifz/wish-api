@@ -5,7 +5,5 @@ export interface User extends Document {
   f_name: string;
   l_name: string;
   readonly password: string;
-  address: string;
-  zipcode: string;
-  created: Date;
+  image: String;
 }

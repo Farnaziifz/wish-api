@@ -7,9 +7,13 @@ import {
     Param,
     NotFoundException,
     Delete,
+    Put,
+    Body,
   } from '@nestjs/common';
   import { UserService } from '../shared/user.service';
   import { AuthGuard } from '@nestjs/passport';
+import {  RegisterDTO } from '../auth/auth.dto';
+
   
   @Controller('user')
   export class UserController {
@@ -30,6 +34,21 @@ import {
         statusCode: 200,
         message: 'user has been deleted',
         user,
+      });
+    }
+
+    @Put('/update/:id')
+    async updateProduct(
+      @Res() res,
+      @Param('id') id,
+      @Body() registerDTO: RegisterDTO,
+    ) {
+      const data = await this.userService.updateUser(id, registerDTO);
+      if (!data) throw new NotFoundException('data does not exist!');
+      return res.status(HttpStatus.OK).json({
+        statusCode: 200,
+        message: 'data has been successfully updated',
+        data,
       });
     }
   }

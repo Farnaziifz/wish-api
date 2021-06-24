@@ -52,4 +52,13 @@ export class UserService {
     const { username } = payload;
     return await this.userModel.findOne({ username });
   }
+
+ async updateUser(id, userDTO: RegisterDTO): Promise<User> {
+  const data = await this.userModel.findByIdAndUpdate(
+    id,
+    userDTO,
+    { new: true },
+  );
+  return data;
+ }
 }

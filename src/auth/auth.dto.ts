@@ -6,4 +6,7 @@ export interface LoginDTO {
 export interface RegisterDTO {
   username: string;
   password: string;
+  f_name: string;
+  l_name: string;
+  image: string;
 }
